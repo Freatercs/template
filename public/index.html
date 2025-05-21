@@ -18,7 +18,8 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Last.fm</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -33,5 +34,37 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <header class="header">
+      <div class="header-container">
+        <a href="index.html" class="logo">last.fm</a>
+        <nav class="nav">
+          <div class="dropdown">
+            <button class="dropdown-button">Music</button>
+            <ul class="dropdown-menu">
+               <li><a href="top-artists.html">Top performers</a></li>
+               <li><a href="top-tracks.html">Top tracks</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Welcome to Last.fm</h1>
+    <p>Discover music, get recommendations, and connect with other music lovers.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>&copy; 2023 Last.fm Clone. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">About</a>
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
   </body>
 </html>
