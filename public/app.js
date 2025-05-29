@@ -181,3 +181,138 @@
 //     document.body.prepend(errorElement);
 //     setTimeout(() => errorElement.remove(), 5000);
 // }
+
+// Конфигурация API
+const API_KEY = 'b2ce21b3d5ee14e3eaa2d5f3714a54e3'; // Замените на ваш API ключ
+const API_BASE_URL = 'https://ws.audioscrobbler.com/2.0/';
+
+// Функция для выполнения запросов к API
+async function fetchFromAPI(method, params) {
+    const queryParams = new URLSearchParams({
+        method,
+        api_key: API_KEY,
+        format: 'json',
+        ...params
+    });
+
+    try {
+        const response = await fetch(`${API_BASE_URL}?${queryParams}`);
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        showError('Ошибка при загрузке данных');
+        return null;
+    }
+}
+
+// Функция для отображения ошибок
+function showError(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    document.body.appendChild(errorDiv);
+    setTimeout(() => errorDiv.remove(), 3000);
+}
+
+// Функция для загрузки топ исполнителей
+async function loadTopArtists() {
+    const data = await fetchFromAPI('chart.gettopartists', {
+        limit: 8
+    });
+
+    if (!data) return;
+
+    const artistsContainer = document.getElementById('artists-container');
+    if (!artistsContainer) return;
+
+    artistsContainer.innerHTML = data.artists.artist.map(artist => `
+        <div class="artist-card">
+            <div class="artist-image" style="background-image: url('${artist.image[3]['#text']}')"></div>
+            <h3>${artist.name}</h3>
+            <p>${artist.listeners} слушателей</p>
+        </div>
+    `).join('');
+}
+
+// Функция для загрузки топ треков
+async function loadTopTracks() {
+    const data = await fetchFromAPI('chart.gettoptracks', {
+        limit: 8
+    });
+
+    if (!data) return;
+
+    const tracksContainer = document.getElementById('tracks-container');
+    if (!tracksContainer) return;
+
+    tracksContainer.innerHTML = data.tracks.track.map((track, index) => `
+        <div class="track-item">
+            <div class="track-number">${index + 1}</div>
+            <div class="track-image" style="background-image: url('${track.image[3]['#text']}')"></div>
+            <div class="track-info">
+                <h3>${track.name}</h3>
+                <p>${track.artist.name}</p>
+            </div>
+            <div class="track-plays">${track.playcount} прослушиваний</div>
+        </div>
+    `).join('');
+}
+
+// Функция для поиска
+async function handleSearch(event) {
+    event.preventDefault();
+    const searchInput = event.target.querySelector('.search-input');
+    const query = searchInput.value.trim();
+    
+    if (!query) return;
+
+    const data = await fetchFromAPI('track.search', {
+        track: query,
+        limit: 8
+    });
+
+    if (!data) return;
+
+    const tracksContainer = document.getElementById('tracks-container');
+    if (!tracksContainer) return;
+
+    if (data.results.trackmatches.track.length === 0) {
+        showError('Ничего не найдено');
+        return;
+    }
+
+    tracksContainer.innerHTML = data.results.trackmatches.track.map((track, index) => `
+        <div class="track-item">
+            <div class="track-number">${index + 1}</div>
+            <div class="track-image" style="background-image: url('${track.image[3]['#text']}')"></div>
+            <div class="track-info">
+                <h3>${track.name}</h3>
+                <p>${track.artist}</p>
+            </div>
+            <div class="track-plays">${track.listeners} слушателей</div>
+        </div>
+    `).join('');
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    // Загрузка данных в зависимости от текущей страницы
+    const currentPage = window.location.pathname;
+    if (currentPage.includes('artists.html')) {
+        loadTopArtists();
+    } else if (currentPage.includes('tracks.html')) {
+        loadTopTracks();
+    } else {
+        loadTopArtists();
+        loadTopTracks();
+    }
+
+    // Обработчик поиска
+    const searchForm = document.getElementById('search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', handleSearch);
+    }
+});
