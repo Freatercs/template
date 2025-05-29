@@ -1,0 +1,486 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    position: relative;
+}
+
+.container {
+    flex: 1;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    color: #d51007;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    margin: 2rem 0 1rem;
+    color: #333;
+    font-size: 1.8rem;
+}
+
+/* Шапка */
+.header {
+    background-color: #000000;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d51007;
+    text-decoration: none;
+    display: inline-block;
+    order: 1;
+    transition: opacity 0.2s;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+/* Стили для поиска */
+.search-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0;
+    order: 2;
+    height: 48px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    height: 100%;
+    padding: 0 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 24px;
+    font-size: 1rem;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+    background: #fff;
+    color: #333;
+    border-color: #d51007;
+    box-shadow: 0 0 0 4px rgba(213, 16, 7, 0.1);
+}
+
+.search-input:focus::placeholder {
+    color: #999;
+}
+
+.search-button {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #d51007;
+    border: none;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.search-button:hover {
+    background: #b30c05;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.search-button:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    transition: transform 0.3s ease;
+}
+
+.search-button:hover .search-icon {
+    transform: scale(1.1);
+}
+
+/* Навигация */
+.nav {
+    position: relative;
+    order: 3;
+}
+
+.dropdown-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.8rem 1.2rem;
+    transition: background-color 0.2s;
+}
+
+.dropdown-button:hover {
+    background-color: #333;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #000;
+    list-style: none;
+    padding: 0.5rem 0;
+    margin: 0;
+    min-width: 200px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.8rem 1.2rem;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #d51007;
+}
+
+/* Страница исполнителей */
+.artists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.artist-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.artist-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.artist-image {
+    height: 250px;
+    background-color: #ddd;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.artist-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%);
+}
+
+.artist-card h3 {
+    padding: 1.2rem 1.2rem 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.artist-card p {
+    padding: 0 1.2rem 1.2rem;
+    color: #666;
+}
+
+/* Список треков */
+.tracks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.track-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.track-number {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #d51007;
+    width: 40px;
+    text-align: center;
+}
+
+.track-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    margin: 0 1rem;
+    background-size: cover;
+    background-position: center;
+}
+
+.track-info {
+    flex: 1;
+}
+
+.track-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+.track-info p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.track-plays {
+    color: #666;
+    font-size: 0.9rem;
+    margin-left: 1rem;
+}
+
+/* Подвал */
+.footer {
+    background-color: #000;
+    color: white;
+    padding: 2rem 0;
+    margin-top: auto;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #d51007;
+}
+
+/* Сообщения об ошибках */
+.error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #ff4444;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Стили для состояния загрузки */
+.loading {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Стили для анимации загрузки */
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* Адаптивность */
+@media (min-width: 768px) {
+    .search-container {
+        width: auto;
+        margin: 0 1rem;
+    }
+
+    .nav {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .header-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .search-container {
+        order: 3;
+    }
+
+    .nav {
+        order: 2;
+    }
+
+    .dropdown-menu {
+        right: auto;
+        left: 0;
+    }
+
+    .artists-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+
+    .track-item {
+        flex-wrap: wrap;
+    }
+
+    .track-number {
+        width: 30px;
+    }
+
+    .track-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .track-info {
+        flex: 1 1 100%;
+        margin-top: 0.5rem;
+    }
+
+    .track-plays {
+        margin-left: auto;
+    }
+
+    .footer-container {
+        padding: 1rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

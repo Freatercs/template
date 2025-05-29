@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Last.fm - Топ исполнителей</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">last.fm</a>
+            <div class="search-container">
+                <form id="search-form">
+                    <input type="text" class="search-input" placeholder="Поиск исполнителей..." required>
+                    <button type="submit" class="search-button">
+                        <svg class="search-icon" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <nav class="nav">
+                <div class="dropdown">
+                    <button class="dropdown-button">Музыка</button>
+                    <ul class="dropdown-menu">
+                        <li><a href="artists.html">Топ исполнителей</a></li>
+                        <li><a href="tracks.html">Топ треков</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Топ исполнителей</h1>
+        <div class="artists-grid" id="artists-container">
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Arctic Monkeys</h3>
+                <p>2,345,678 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Radiohead</h3>
+                <p>1,987,654 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Muse</h3>
+                <p>1,765,432 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Queens of the Stone Age</h3>
+                <p>1,543,210 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>The Strokes</h3>
+                <p>1,432,109 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Interpol</h3>
+                <p>1,321,098 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Franz Ferdinand</h3>
+                <p>1,210,987 слушателей</p>
+            </div>
+            <div class="artist-card">
+                <div class="artist-image" style="background-image: url('https://lastfm.freetls.fastly.net/i/u/300x300/2a96cbd8b46e442fc41c2b86b821562f.png')"></div>
+                <h3>Kasabian</h3>
+                <p>1,098,765 слушателей</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="#">О нас</a>
+                <a href="#">Контакты</a>
+                <a href="#">Помощь</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html> 
